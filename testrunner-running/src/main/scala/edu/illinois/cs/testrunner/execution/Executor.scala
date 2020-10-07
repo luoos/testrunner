@@ -29,6 +29,9 @@ object Executor {
             case "JUnit" =>
                 JUnitTestExecutor.runOrder(testRunId, tests, true, false)
                     .writeTo(outputPath.toAbsolutePath.toString)
+            case "JUnit5" =>
+                JUnit5TestExecutor.run(testRunId, tests)
+                                  .writeTo(outputPath.toAbsolutePath.toString)
             case _ => throw new Exception("Unknown test framework: " ++ testFramework)
         })
 
