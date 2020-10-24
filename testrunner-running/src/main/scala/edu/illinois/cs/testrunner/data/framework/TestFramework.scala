@@ -13,7 +13,10 @@ object TestFramework {
         // we should get a list of dependencies
         val artifacts = project.getArtifacts.asScala
 
-        if (artifacts.exists(artifact => artifact.getArtifactId == "junit")) {
+        if (artifacts.exists(artifact =>
+                artifact.getArtifactId == "junit" ||
+                artifact.getArtifactId == "junit-jupiter" ||
+                artifact.getArtifactId == "junit-jupiter-api")) {
             Option(JUnit)
         } else {
             Option.empty
