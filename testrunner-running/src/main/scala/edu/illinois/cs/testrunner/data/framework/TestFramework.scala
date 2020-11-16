@@ -115,7 +115,7 @@ object JUnit5 extends TestFramework {
             val clz = loader.loadClass(clzName)
 
             if (!Modifier.isAbstract(clz.getModifiers)) {
-                val methods = clz.getMethods.toStream
+                val methods = Utils.getAllMethods(clz).asScala.toStream
 
                 Try(if (methods.exists(_.getAnnotation(annotation) != null)) {
                     Option(new JUnit5TestClass(loader, clz))
