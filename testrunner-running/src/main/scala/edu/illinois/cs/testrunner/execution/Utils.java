@@ -4,9 +4,9 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Utils {
-    private static final String junit5NestedRegex = "\\[class:([\\w.]+).*\\[nested-class:([\\w.]+).*\\[method:(\\w+)\\(";
+    private static final String junit5NestedRegex = "\\[class:([\\w.]+).*\\[nested-class:([\\w.]+).*\\[method:([\\w().]+)";
     private static final Pattern junit5NestedPattern = Pattern.compile(junit5NestedRegex);
-    private static final String junit5Regex = "\\[class:([\\w.]+).*\\[method:(\\w+)\\(";
+    private static final String junit5Regex = "\\[class:([\\w.]+).*\\[method:([\\w().]+)";
     private static final Pattern junit5Pattern = Pattern.compile(junit5Regex);
     private static final String junit4Regex = "\\[test:(\\w+)\\(([\\w.]+)\\)";
     private static final Pattern junit4Pattern = Pattern.compile(junit4Regex);
@@ -16,11 +16,11 @@ public class Utils {
      *
      * For JUnit 5 nested test:
      * uniqueId: [engine:junit-jupiter]/[class:com.luojl.demo.InheritedTest]/[nested-class:NestedTest]/[method:NestedTestB()]
-     * fully qualified name: com.luojl.demo.InheritedTest$NestedTest#NestedTestB
+     * fully qualified name: com.luojl.demo.InheritedTest$NestedTest#NestedTestB()
      *
      * For JUnit 5:
-     * uniqueId: [engine:junit-jupiter]/[class:com.luojl.demo.JUnit5DemoTest]/[method:TestC()]
-     * full qualified name: com.luojl.demo.JUnit5DemoTest#TestC
+     * uniqueId: [engine:junit-jupiter]/[class:com.luojl.demo.JUnit5DemoTest]/[method:TestC(java.lang.String)]
+     * full qualified name: com.luojl.demo.JUnit5DemoTest#TestC(java.lang.String)
      *
      * For JUnit 4:
      * uniqueId: [engine:junit-vintage]/[runner:com.luojl.demo.JUnit4DemoTest]/[test:TestA4(com.luojl.demo.JUnit4DemoTest)]
